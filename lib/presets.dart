@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:walk_in/newPresets.dart';
 import 'package:walk_in/shop.dart';
 
 import 'newOrder.dart';
@@ -14,21 +15,39 @@ class _presetsState extends State<presets> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        // title: Text(widget.title),
-        backgroundColor: Theme.of(context).primaryColor,
+      // appBar: AppBar(
+      //   // title: Text(widget.title),
+      //   backgroundColor: Theme.of(context).primaryColor,
+      // ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const NewPresets()),
+          );
+        },
+        child: Icon(Icons.add),
       ),
       body: Column(
         children: [
+          SizedBox(
+            height: 30,
+          ),
           Container(
-            height: 150.0,
-            // width: ,
-            color: Color.fromARGB(255, 74, 229, 126),
-            child: Center(
-                child: Text(
-              "ShopName",
-              style: TextStyle(fontSize: 25),
-            )),
+            height: 200,
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+            child: Card(
+              // height: 150.0,
+              // width: ,
+              color: Color.fromARGB(255, 74, 229, 126),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+              child: Center(
+                  child: Text(
+                "ShopName",
+                style: TextStyle(fontSize: 25),
+              )),
+            ),
           ),
           Padding(padding: EdgeInsets.only(top: 15)),
           Container(
@@ -90,16 +109,26 @@ class _presetsState extends State<presets> {
                         child: Text('Presets')),
                   ],
                 ),
-                // Padding(padding: EdgeInsets.only(left: 15)),
+                // Padding(padding: EdgeInsets.only(right: 15)),
+
                 Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Padding(padding: EdgeInsets.only(left: 10)),
+                    Padding(padding: EdgeInsets.only(left: 200)),
                     ElevatedButton.icon(
                         style: ElevatedButton.styleFrom(
                             primary: Color.fromARGB(255, 74, 229, 126),
+                            padding: EdgeInsets.symmetric(horizontal: 10),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30))),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const NewPresets()),
+                          );
+                        },
                         icon: Icon(Icons.add),
                         label: Text('Add Presets')),
                   ],
