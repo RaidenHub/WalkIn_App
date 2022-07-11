@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:walk_in/AddPresets/cart.dart';
 import 'package:walk_in/profile.dart';
 import 'package:walk_in/shop.dart';
+import 'package:walk_in/AddPresets/cart.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,7 +34,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int index = 0;
   static const List<Widget> _widgetOptions = <Widget>[
     MyApp(),
-    Cart(),
+    // CartP(),
+    CartP(),
     Profile(),
   ];
 
@@ -41,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
     if (index == 0)
       Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp()));
     if (index == 1)
-      Navigator.push(context, MaterialPageRoute(builder: (context) => Cart()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => CartP()));
     if (index == 2)
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => Profile()));
