@@ -213,23 +213,23 @@ class CartPState extends State<CartP> {
             ],
           ),
         ),
-        Align(
-          alignment: Alignment.topRight,
-          child: Container(
-            width: 24,
-            height: 24,
-            alignment: Alignment.center,
-            margin: EdgeInsets.only(right: 10, top: 8),
-            child: Icon(
-              Icons.close,
-              color: Colors.white,
-              size: 20,
-            ),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(4)),
-                color: Colors.green),
-          ),
-        )
+        // Align(
+        //   alignment: Alignment.topRight,
+        //   child: Container(
+        //     width: 24,
+        //     height: 24,
+        //     alignment: Alignment.center,
+        //     margin: EdgeInsets.only(right: 10, top: 8),
+        //     child: Icon(
+        //       Icons.close,
+        //       color: Colors.white,
+        //       size: 20,
+        //     ),
+        //     decoration: BoxDecoration(
+        //         borderRadius: BorderRadius.all(Radius.circular(4)),
+        //         color: Colors.green),
+        //   ),
+        // )
       ],
     );
   }

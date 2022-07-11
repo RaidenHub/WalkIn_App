@@ -159,11 +159,11 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
-            label: 'Business',
+            label: 'Cart',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.people),
-            label: 'School',
+            label: 'Profile',
           ),
         ],
         // currentIndex: index,
