@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:walk_in/newPresets.dart';
 import 'package:walk_in/shop.dart';
 
+import 'bottomNavigationBar.dart';
 import 'newOrder.dart';
 
 class presets extends StatefulWidget {
@@ -160,6 +161,7 @@ class _presetsState extends State<presets> {
           ),
         ],
       ),
+      bottomNavigationBar: BottomNavigation(),
     );
   }
 }

@@ -5,6 +5,8 @@ import 'package:walk_in/newOrder.dart';
 import 'package:walk_in/presets.dart';
 import 'package:walk_in/recommended.dart';
 
+import 'bottomNavigationBar.dart';
+
 class Shops extends StatefulWidget {
   const Shops({Key? key}) : super(key: key);
 
@@ -192,6 +194,7 @@ class _ShopsState extends State<Shops> {
           ],
         ),
       ),
+      bottomNavigationBar: BottomNavigation(),
     );
   }
 }

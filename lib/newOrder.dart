@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:walk_in/presets.dart';
 import 'package:walk_in/shop.dart';
 
+import 'bottomNavigationBar.dart';
+
 class NewOrder extends StatefulWidget {
   const NewOrder({Key? key}) : super(key: key);
 
@@ -99,6 +101,7 @@ class _NewOrderState extends State<NewOrder> {
           ),
         ],
       ),
+      bottomNavigationBar: BottomNavigation(),
     );
   }
 }

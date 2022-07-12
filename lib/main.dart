@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:walk_in/AddPresets/carousel.dart';
-import 'package:walk_in/AddPresets/cart.dart';
+import 'package:walk_in/bottomNavigationBar.dart';
+import 'package:walk_in/cart.dart';
+import 'package:walk_in/login.dart';
 import 'package:walk_in/profile.dart';
 import 'package:walk_in/shop.dart';
-import 'package:walk_in/AddPresets/cart.dart';
+import 'package:walk_in/cart.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MaterialApp(
+    home: LoginPage(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -33,21 +37,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int index = 0;
-  static const List<Widget> _widgetOptions = <Widget>[
-    MyApp(),
-    CartP(),
-    Profile(),
-  ];
-
-  void _onItemTapped(int index) {
-    if (index == 0)
-      Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp()));
-    if (index == 1)
-      Navigator.push(context, MaterialPageRoute(builder: (context) => CartP()));
-    if (index == 2)
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => Profile()));
-  }
 
   var shops = ['shop1', 'shop2', 'shop3', 'shop4'];
   @override
@@ -123,28 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: index,
-        type: BottomNavigationBarType.fixed,
-        // onTap: (value) => setState(() => index = value),
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Cart',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.people),
-            label: 'Profile',
-          ),
-        ],
-        // currentIndex: index,
-        selectedItemColor: Colors.amber[800],
-        onTap: _onItemTapped,
-      ),
+      bottomNavigationBar: BottomNavigation(),
     );
   }
 }
