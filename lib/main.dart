@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:walk_in/AddPresets/carousel.dart';
 import 'package:walk_in/AddPresets/cart.dart';
 import 'package:walk_in/profile.dart';
 import 'package:walk_in/shop.dart';
@@ -34,7 +35,6 @@ class _MyHomePageState extends State<MyHomePage> {
   int index = 0;
   static const List<Widget> _widgetOptions = <Widget>[
     MyApp(),
-    // CartP(),
     CartP(),
     Profile(),
   ];
@@ -49,6 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
           context, MaterialPageRoute(builder: (context) => Profile()));
   }
 
+  var shops = ['shop1', 'shop2', 'shop3', 'shop4'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,94 +60,68 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         backgroundColor: Theme.of(context).primaryColor,
       ),
-      body: Column(
-        children: [
-          SizedBox(
-            height: 30,
-          ),
-          Container(
-            height: 200,
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            child: Card(
-              // height: 150.0,
-              // width: ,
-              color: Color.fromARGB(255, 74, 229, 126),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15)),
-              child: Center(
-                  child: Text(
-                "ShopName",
-                style: TextStyle(fontSize: 25),
-              )),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 30,
             ),
-          ),
-          Padding(padding: EdgeInsets.only(top: 15)),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Shops()),
-              );
-            },
-            child: Center(
-              child: Container(
-                height: 80,
-                width: 370,
-                color: Color.fromARGB(255, 74, 229, 126),
-                child: Text(
-                  "Shop1",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontStyle: FontStyle.italic, height: 2, fontSize: 25),
-                ),
+            Container(
+              height: 300,
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              child: Carousel(),
+            ),
+            Padding(padding: EdgeInsets.only(top: 15)),
+            Container(
+              margin: EdgeInsets.only(right: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(padding: EdgeInsets.only(right: 20, bottom: 15)),
+                  Text(
+                    'Near You',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ],
               ),
             ),
-          ),
-          Padding(padding: EdgeInsets.only(top: 15)),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Shops()),
-              );
-            },
-            child: Center(
-              child: Container(
-                height: 80,
-                width: 370,
-                color: Color.fromARGB(255, 74, 229, 126),
-                child: Text(
-                  "Shop2",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontStyle: FontStyle.italic, height: 2, fontSize: 25),
+            Container(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: shops
+                      .map((e) => InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const Shops()));
+                            },
+                            child: Container(
+                              height: 150,
+                              width: 150,
+                              margin: EdgeInsets.only(left: 15, top: 10),
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                                color: Color.fromARGB(255, 74, 229, 126),
+                                child: Text(
+                                  (e),
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontStyle: FontStyle.italic,
+                                      height: 2,
+                                      fontSize: 25),
+                                ),
+                              ),
+                            ),
+                          ))
+                      .toList(),
                 ),
               ),
-            ),
-          ),
-          Padding(padding: EdgeInsets.only(top: 15)),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Shops()),
-              );
-            },
-            child: Center(
-              child: Container(
-                height: 80,
-                width: 370,
-                color: Color.fromARGB(255, 74, 229, 126),
-                child: Text(
-                  "Shop3",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontStyle: FontStyle.italic, height: 2, fontSize: 25),
-                ),
-              ),
-            ),
-          ),
-        ],
+            )
+          ],
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: index,

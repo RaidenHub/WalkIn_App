@@ -12,7 +12,7 @@ class _SidesState extends State<Sides> {
   Widget build(BuildContext context) {
     return Container(
       width: 300,
-      child: Text('nvube'),
+      child: Text('sides'),
     );
   }
 }

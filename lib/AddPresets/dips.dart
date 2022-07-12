@@ -9,7 +9,7 @@ class Dips extends StatefulWidget {
 
 enum SingingCharacter { cheesedip, periperidip }
 
-var dips = ['cheesedip', 'periperidip'];
+var dips = ['cheesedip', 'periperidip', 'hello'];
 
 class _DipsState extends State<Dips> {
   SingingCharacter? _character = SingingCharacter.cheesedip;
@@ -28,7 +28,7 @@ class _DipsState extends State<Dips> {
               .map((character) => Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     child: ListTile(
-                        tileColor: Colors.amber,
+                        // tileColor: Colors.amber,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15)),
                         // title: const Text('Cheese Dip'),

@@ -18,9 +18,9 @@ class _NewPresetsState extends State<NewPresets> {
   var names = ['Food Items', 'Sides', 'Toppings', 'Beverages', 'Dips'];
   static const List<Widget> _widgetOptions = [
     FoodItems(),
-    Beverages(),
-    Toppings(),
     Sides(),
+    Toppings(),
+    Beverages(),
     Dips(),
   ];
 
