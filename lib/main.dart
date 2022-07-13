@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:walk_in/AddPresets/carousel.dart';
 import 'package:walk_in/bottomNavigationBar.dart';
 import 'package:walk_in/cart.dart';
@@ -8,9 +9,60 @@ import 'package:walk_in/shop.dart';
 import 'package:walk_in/cart.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  String stripePublishableKey =
+      "sk_test_51LJFSTSBve02oYMv4GD21Ai8uDiuPem1gcp2wHGSZiLgiXS3JW3NtQSLJZtMaKKUdIy2j5TMyLoGgcTCLRd1lxW6004AHeuPJd";
+  Stripe.publishableKey = stripePublishableKey;
+
   runApp(MaterialApp(
     home: LoginPage(),
   ));
+}
+
+class Payment extends StatelessWidget {
+  const Payment({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Payment"),
+      ),
+      body: Center(
+        // evalued button
+        child: ElevatedButton(
+          child: Text("Payment"),
+          onPressed: () async {
+            await Stripe.instance.createPaymentMethod(
+              const PaymentMethodParams.card(
+                paymentMethodData: PaymentMethodData(
+                  billingDetails: BillingDetails(
+                    email: "test@gmail.com",
+                    address: Address(
+                        city: "city",
+                        country: "country",
+                        line1: "line1",
+                        line2: "line2",
+                        postalCode: "postalCode",
+                        state: 'state'),
+                  ),
+                  shippingDetails: ShippingDetails(
+                    address: Address(
+                        city: "city",
+                        country: "country",
+                        line1: "line1",
+                        line2: "line2",
+                        postalCode: "postalCode",
+                        state: 'state'),
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -90,9 +142,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               height: 150,
                               width: 150,
                               margin: EdgeInsets.only(left: 15, top: 10),
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20)),
+                              child: Container(
+                                // shape: RoundedRectangleBorder(
+                                //     borderRadius: BorderRadius.circular(20)),
                                 color: Theme.of(context).primaryColor,
                                 child: Text(
                                   (e),
