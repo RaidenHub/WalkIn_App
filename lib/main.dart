@@ -1,5 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_stripe/flutter_stripe.dart';
+// import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:walk_in/AddPresets/carousel.dart';
 import 'package:walk_in/bottomNavigationBar.dart';
 import 'package:walk_in/cart.dart';
@@ -7,20 +9,32 @@ import 'package:walk_in/login.dart';
 import 'package:walk_in/profile.dart';
 import 'package:walk_in/shop.dart';
 import 'package:walk_in/cart.dart';
+import 'package:stripe_payment/stripe_payment.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  String stripePublishableKey =
-      "sk_test_51LJFSTSBve02oYMv4GD21Ai8uDiuPem1gcp2wHGSZiLgiXS3JW3NtQSLJZtMaKKUdIy2j5TMyLoGgcTCLRd1lxW6004AHeuPJd";
-  Stripe.publishableKey = stripePublishableKey;
-
   runApp(MaterialApp(
-    home: LoginPage(),
+    home: Payment(),
   ));
 }
 
-class Payment extends StatelessWidget {
+class Payment extends StatefulWidget {
   const Payment({Key? key}) : super(key: key);
+
+  @override
+  State<Payment> createState() => _PaymentState();
+}
+
+class _PaymentState extends State<Payment> {
+  var _source = null;
+  @override
+  initState() {
+    super.initState();
+    StripePayment.setOptions(StripeOptions(
+        publishableKey:
+            "pk_test_51LJFSTSBve02oYMv5wPDWgecH8OdzOD9opy79xLgz5DL1kqPimWKeqGzPml5aVo8NR2tdfnSq5nvAycwd61toxCF001oqGBw11",
+        merchantId: "YOUR_MERCHANT_ID",
+        androidPayMode: 'test'));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,32 +46,48 @@ class Payment extends StatelessWidget {
         // evalued button
         child: ElevatedButton(
           child: Text("Payment"),
-          onPressed: () async {
-            await Stripe.instance.createPaymentMethod(
-              const PaymentMethodParams.card(
-                paymentMethodData: PaymentMethodData(
-                  billingDetails: BillingDetails(
-                    email: "test@gmail.com",
-                    address: Address(
-                        city: "city",
-                        country: "country",
-                        line1: "line1",
-                        line2: "line2",
-                        postalCode: "postalCode",
-                        state: 'state'),
-                  ),
-                  shippingDetails: ShippingDetails(
-                    address: Address(
-                        city: "city",
-                        country: "country",
-                        line1: "line1",
-                        line2: "line2",
-                        postalCode: "postalCode",
-                        state: 'state'),
-                  ),
-                ),
+          // onPressed: () {
+          //   StripePayment.paymentRequestWithCardForm(CardFormPaymentRequest(
+          //       // type: 'ideal',
+          //       // amount: 2102,
+          //       // currency: 'eur',
+          //       // returnURL: 'example://stripe-redirect',
+          //       )).then((source) {
+          //     // _scaffoldKey.currentState.showSnackBar(SnackBar(content: Text('Received ${source.sourceId}')));
+          //     print('Received ${source.id}');
+          //     setState(() {
+          //       _source = source;
+          //     });
+          //   });
+          //   // .catchError(setError);
+          // },
+          onPressed: () {
+            if (Platform.isIOS) {
+              // _controller.jumpTo(450);
+            }
+            StripePayment.paymentRequestWithNativePay(
+              androidPayOptions: AndroidPayPaymentRequest(
+                totalPrice: "2.40",
+                currencyCode: "INR",
               ),
-            );
+              applePayOptions: ApplePayPaymentOptions(
+                countryCode: 'DE',
+                currencyCode: 'EUR',
+                items: [
+                  ApplePayItem(
+                    label: 'Test',
+                    amount: '27',
+                  )
+                ],
+              ),
+            ).then((token) {
+              setState(() {
+                // _scaffoldKey.currentState.showSnackBar(SnackBar(content: Text('Received ${token.tokenId}')));
+                print(token);
+                _source = token;
+              });
+            });
+            // .catchError(setError);
           },
         ),
       ),
