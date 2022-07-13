@@ -1,15 +1,10 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-// import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:razorpay_web/razorpay_web.dart';
 import 'package:walk_in/AddPresets/carousel.dart';
 import 'package:walk_in/bottomNavigationBar.dart';
-import 'package:walk_in/cart.dart';
-import 'package:walk_in/login.dart';
-import 'package:walk_in/profile.dart';
 import 'package:walk_in/shop.dart';
-import 'package:walk_in/cart.dart';
-import 'package:stripe_payment/stripe_payment.dart';
+import 'package:walk_in/util/payment.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -29,11 +24,6 @@ class _PaymentState extends State<Payment> {
   @override
   initState() {
     super.initState();
-    StripePayment.setOptions(StripeOptions(
-        publishableKey:
-            "pk_test_51LJFSTSBve02oYMv5wPDWgecH8OdzOD9opy79xLgz5DL1kqPimWKeqGzPml5aVo8NR2tdfnSq5nvAycwd61toxCF001oqGBw11",
-        merchantId: "YOUR_MERCHANT_ID",
-        androidPayMode: 'test'));
   }
 
   @override
@@ -46,48 +36,13 @@ class _PaymentState extends State<Payment> {
         // evalued button
         child: ElevatedButton(
           child: Text("Payment"),
-          // onPressed: () {
-          //   StripePayment.paymentRequestWithCardForm(CardFormPaymentRequest(
-          //       // type: 'ideal',
-          //       // amount: 2102,
-          //       // currency: 'eur',
-          //       // returnURL: 'example://stripe-redirect',
-          //       )).then((source) {
-          //     // _scaffoldKey.currentState.showSnackBar(SnackBar(content: Text('Received ${source.sourceId}')));
-          //     print('Received ${source.id}');
-          //     setState(() {
-          //       _source = source;
-          //     });
-          //   });
-          //   // .catchError(setError);
-          // },
-          onPressed: () {
-            if (Platform.isIOS) {
-              // _controller.jumpTo(450);
-            }
-            StripePayment.paymentRequestWithNativePay(
-              androidPayOptions: AndroidPayPaymentRequest(
-                totalPrice: "2.40",
-                currencyCode: "INR",
-              ),
-              applePayOptions: ApplePayPaymentOptions(
-                countryCode: 'DE',
-                currencyCode: 'EUR',
-                items: [
-                  ApplePayItem(
-                    label: 'Test',
-                    amount: '27',
-                  )
-                ],
-              ),
-            ).then((token) {
-              setState(() {
-                // _scaffoldKey.currentState.showSnackBar(SnackBar(content: Text('Received ${token.tokenId}')));
-                print(token);
-                _source = token;
-              });
-            });
-            // .catchError(setError);
+          onPressed: () async {
+            await payment(
+                amount: 1221,
+                userId: "userId",
+                name: "name",
+                email: 'email@gmail.com',
+                phone: "1234567890");
           },
         ),
       ),
