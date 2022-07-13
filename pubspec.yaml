@@ -35,10 +35,22 @@ dependencies:
   cupertino_icons: ^1.0.2
   persistent_bottom_nav_bar: ^4.0.2
   font_awesome_flutter: ^10.1.0  
-  stripe_payment: ^1.1.4
+  # stripe_payment: ^1.1.4
+  graphql: ^5.1.1
+  graphql_flutter: ^5.1.0
+  # ferry: ^0.10.4
+  gql_http_link: ^0.4.2
+
+
+  
 
 dev_dependencies:
-  flutter_test:
+  graphql_codegen: ^0.9.0
+  json_serializable: ^6.3.1
+  build_runner: ^2.2.0
+  json_annotation: ^4.6.0
+  # ferry_generator: ^0.4.4
+  flutter_test:  
     sdk: flutter
 
   # The "flutter_lints" package below contains a set of recommended lints to

@@ -1,19 +1,23 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:graphql/client.dart';
 // import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:walk_in/AddPresets/carousel.dart';
+
 import 'package:walk_in/bottomNavigationBar.dart';
 import 'package:walk_in/cart.dart';
 import 'package:walk_in/login.dart';
 import 'package:walk_in/profile.dart';
 import 'package:walk_in/shop.dart';
 import 'package:walk_in/cart.dart';
-import 'package:stripe_payment/stripe_payment.dart';
+// import 'package:stripe_payment/stripe_payment.dart';
+
+import 'client.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: Payment(),
+    home: MyApp(),
   ));
 }
 
@@ -26,15 +30,16 @@ class Payment extends StatefulWidget {
 
 class _PaymentState extends State<Payment> {
   var _source = null;
+  var result = null;
   @override
-  initState() {
-    super.initState();
-    StripePayment.setOptions(StripeOptions(
-        publishableKey:
-            "pk_test_51LJFSTSBve02oYMv5wPDWgecH8OdzOD9opy79xLgz5DL1kqPimWKeqGzPml5aVo8NR2tdfnSq5nvAycwd61toxCF001oqGBw11",
-        merchantId: "YOUR_MERCHANT_ID",
-        androidPayMode: 'test'));
-  }
+  // initState() {
+  //   super.initState();
+  //   StripePayment.setOptions(StripeOptions(
+  //       publishableKey:
+  //           "pk_test_51LJFSTSBve02oYMv5wPDWgecH8OdzOD9opy79xLgz5DL1kqPimWKeqGzPml5aVo8NR2tdfnSq5nvAycwd61toxCF001oqGBw11",
+  //       merchantId: "YOUR_MERCHANT_ID",
+  //       androidPayMode: 'test'));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -45,51 +50,15 @@ class _PaymentState extends State<Payment> {
       body: Center(
         // evalued button
         child: ElevatedButton(
-          child: Text("Payment"),
-          // onPressed: () {
-          //   StripePayment.paymentRequestWithCardForm(CardFormPaymentRequest(
-          //       // type: 'ideal',
-          //       // amount: 2102,
-          //       // currency: 'eur',
-          //       // returnURL: 'example://stripe-redirect',
-          //       )).then((source) {
-          //     // _scaffoldKey.currentState.showSnackBar(SnackBar(content: Text('Received ${source.sourceId}')));
-          //     print('Received ${source.id}');
-          //     setState(() {
-          //       _source = source;
-          //     });
-          //   });
-          //   // .catchError(setError);
-          // },
-          onPressed: () {
-            if (Platform.isIOS) {
-              // _controller.jumpTo(450);
+            child: Text("Payment"),
+            onPressed: () async {
+              result = await client.query(options);
+              print(result.data['getFoods']);
             }
-            StripePayment.paymentRequestWithNativePay(
-              androidPayOptions: AndroidPayPaymentRequest(
-                totalPrice: "2.40",
-                currencyCode: "INR",
-              ),
-              applePayOptions: ApplePayPaymentOptions(
-                countryCode: 'DE',
-                currencyCode: 'EUR',
-                items: [
-                  ApplePayItem(
-                    label: 'Test',
-                    amount: '27',
-                  )
-                ],
-              ),
-            ).then((token) {
-              setState(() {
-                // _scaffoldKey.currentState.showSnackBar(SnackBar(content: Text('Received ${token.tokenId}')));
-                print(token);
-                _source = token;
-              });
-            });
-            // .catchError(setError);
-          },
-        ),
+
+            // },
+
+            ),
       ),
     );
   }

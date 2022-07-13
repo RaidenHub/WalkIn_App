@@ -1,0 +1,10 @@
+query myquery{
+  getFoods {
+    dips {
+      name
+      price
+    }
+    category
+    description
+  }
+}
