@@ -21,7 +21,9 @@ class _ProfileState extends State<Profile> {
           Container(child: Text('pro')),
         ],
       ),
-      bottomNavigationBar: BottomNavigation(),
+      bottomNavigationBar: BottomNavigation(
+        index: 2,
+      ),
     );
   }
 }

@@ -40,7 +40,7 @@ class _presetsState extends State<presets> {
             child: Card(
               // height: 150.0,
               // width: ,
-              color: Color.fromARGB(255, 74, 229, 126),
+              color: Theme.of(context).primaryColor,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),
               child: Center(
@@ -75,7 +75,7 @@ class _presetsState extends State<presets> {
                         },
                         child: Text('Recommended',
                             style: TextStyle(
-                                color: Color.fromARGB(255, 74, 229, 126)))),
+                                color: Theme.of(context).primaryColor))),
                     Padding(padding: EdgeInsets.symmetric(horizontal: 5)),
                     OutlinedButton(
                         style: ButtonStyle(
@@ -92,11 +92,11 @@ class _presetsState extends State<presets> {
                         },
                         child: Text('New Order',
                             style: TextStyle(
-                                color: Color.fromARGB(255, 74, 229, 126)))),
+                                color: Theme.of(context).primaryColor))),
                     Padding(padding: EdgeInsets.symmetric(horizontal: 5)),
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Color.fromARGB(255, 74, 229, 126),
+                          primary: Theme.of(context).primaryColor,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15)),
                         ),
@@ -119,7 +119,7 @@ class _presetsState extends State<presets> {
                     Padding(padding: EdgeInsets.only(left: 200)),
                     ElevatedButton.icon(
                         style: ElevatedButton.styleFrom(
-                            primary: Color.fromARGB(255, 74, 229, 126),
+                            primary: Theme.of(context).primaryColor,
                             padding: EdgeInsets.symmetric(horizontal: 10),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30))),
@@ -135,7 +135,7 @@ class _presetsState extends State<presets> {
                   ],
                 ),
                 Card(
-                  color: Color.fromARGB(149, 130, 248, 124),
+                  color: Theme.of(context).primaryColor,
                   margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                   child: Container(
                     height: 80,

@@ -45,7 +45,7 @@ class _NewPresetsState extends State<NewPresets> {
                       .map((e) => Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: ChoiceChip(
-                              selectedColor: Color.fromARGB(255, 74, 229, 126),
+                              selectedColor: Theme.of(context).primaryColor,
                               label: Text(e),
                               selected: names.indexOf(e) == index,
                               onSelected: (bool selected) {

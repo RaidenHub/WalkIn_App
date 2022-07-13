@@ -24,7 +24,7 @@ class _NewOrderState extends State<NewOrder> {
           Container(
             height: 150.0,
             // width: ,
-            color: Color.fromARGB(255, 74, 229, 126),
+            color: Theme.of(context).primaryColor,
             child: Center(
                 child: Text(
               "ShopName",
@@ -57,13 +57,13 @@ class _NewOrderState extends State<NewOrder> {
                         },
                         child: Text(
                           'Recommended',
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 74, 229, 126)),
+                          style:
+                              TextStyle(color: Theme.of(context).primaryColor),
                         )),
                     Padding(padding: EdgeInsets.symmetric(horizontal: 5)),
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Color.fromARGB(255, 74, 229, 126),
+                          primary: Theme.of(context).primaryColor,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15)),
                         ),
@@ -91,8 +91,8 @@ class _NewOrderState extends State<NewOrder> {
                         },
                         child: Text(
                           'Presets',
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 74, 229, 126)),
+                          style:
+                              TextStyle(color: Theme.of(context).primaryColor),
                         )),
                   ],
                 ),

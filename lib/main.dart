@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'WalkIn',
-      theme: ThemeData(primaryColor: Color.fromARGB(255, 255, 255, 255)),
+      theme: ThemeData(primaryColor: Colors.amber[800]),
       home: const MyHomePage(title: 'WalkIn'),
     );
   }
@@ -93,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: Card(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20)),
-                                color: Color.fromARGB(255, 74, 229, 126),
+                                color: Theme.of(context).primaryColor,
                                 child: Text(
                                   (e),
                                   textAlign: TextAlign.center,
@@ -112,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigation(),
+      bottomNavigationBar: BottomNavigation(index: 0),
     );
   }
 }

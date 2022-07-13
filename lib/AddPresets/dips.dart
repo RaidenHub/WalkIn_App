@@ -16,36 +16,31 @@ class _DipsState extends State<Dips> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // height: 100,
-      width: 380,
-
-      child: Column(
-        children: [
-          Text('dips'),
-          Padding(padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8)),
-          ...SingingCharacter.values
-              .map((character) => Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: ListTile(
-                        // tileColor: Colors.amber,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15)),
-                        // title: const Text('Cheese Dip'),
-                        title: Text(character.toString()),
-                        leading: Radio<SingingCharacter>(
-                          value: character,
-                          groupValue: _character,
-                          onChanged: (SingingCharacter? value) {
-                            setState(() {
-                              _character = value;
-                            });
-                          },
-                        )),
-                  ))
-              .toList(),
-        ],
-      ),
+    return Column(
+      children: [
+        Text('dips'),
+        Padding(padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8)),
+        ...SingingCharacter.values
+            .map((character) => Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: ListTile(
+                      // tileColor: Colors.amber,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      // title: const Text('Cheese Dip'),
+                      title: Text(character.toString()),
+                      leading: Radio<SingingCharacter>(
+                        value: character,
+                        groupValue: _character,
+                        onChanged: (SingingCharacter? value) {
+                          setState(() {
+                            _character = value;
+                          });
+                        },
+                      )),
+                ))
+            .toList(),
+      ],
     );
   }
 }

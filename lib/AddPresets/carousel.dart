@@ -55,9 +55,10 @@ class _CarouselState extends State<Carousel> {
 
                     // padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                     child: Card(
+                      elevation: 5,
                       // height: 150.0,
                       // width: ,
-                      color: Color.fromARGB(255, 74, 229, 126),
+                      color: Theme.of(context).primaryColor,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                       child: Center(

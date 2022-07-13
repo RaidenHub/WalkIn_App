@@ -5,14 +5,18 @@ import 'package:walk_in/main.dart';
 import 'package:walk_in/profile.dart';
 
 class BottomNavigation extends StatefulWidget {
-  const BottomNavigation({Key? key}) : super(key: key);
+  int index = 0;
+  BottomNavigation({this.index = 0});
 
   @override
-  State<BottomNavigation> createState() => _BottomNavigationState();
+  State<BottomNavigation> createState() =>
+      _BottomNavigationState(currentindex: index);
 }
 
 class _BottomNavigationState extends State<BottomNavigation> {
-  int _currentindex = 0;
+  int currentindex = 0;
+  _BottomNavigationState({this.currentindex = 0});
+  // int _currentindex = index;
   // final List<Widget> _children = [
   //   MyApp(),
   //   CartP(),
@@ -22,10 +26,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
   void _onItemTapped(int index) {
     setState(() {
-      _currentindex = index;
+      currentindex = index;
 
       if (index == 0) {
-        Navigator.push(
+        Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => MyApp()));
       }
       if (index == 1) {
@@ -33,7 +37,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
             context, MaterialPageRoute(builder: (context) => CartP()));
       }
       if (index == 2) {
-        Navigator.push(
+        Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => Profile()));
       }
     });
@@ -45,7 +49,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
       child: BottomNavigationBar(
         // selectedIconTheme: IconThemeData(color: Colors.amber),
         //
-        currentIndex: _currentindex,
+        currentIndex: currentindex,
         type: BottomNavigationBarType.fixed,
 
         // onTap: (value) => setState(() => index = value),
