@@ -19,10 +19,10 @@ class _DipsState extends State<Dips> {
     return Column(
       children: [
         Text('dips'),
-        Padding(padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8)),
+        // Padding(padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8)),
         ...SingingCharacter.values
             .map((character) => Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: ListTile(
                       // tileColor: Colors.amber,
                       shape: RoundedRectangleBorder(

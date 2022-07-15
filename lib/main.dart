@@ -8,16 +8,18 @@ import 'package:walk_in/AddPresets/carousel.dart';
 import 'package:walk_in/bottomNavigationBar.dart';
 import 'package:walk_in/cart.dart';
 import 'package:walk_in/login.dart';
+import 'package:walk_in/newOrder.dart';
 import 'package:walk_in/profile.dart';
 import 'package:walk_in/shop.dart';
 import 'package:walk_in/cart.dart';
 // import 'package:stripe_payment/stripe_payment.dart';
 
-import 'client.dart';
+import 'GraphQl/client.dart';
+import 'jsonToDart/food.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: MyApp(),
+    home: NewOrder(),
   ));
 }
 
@@ -32,15 +34,6 @@ class _PaymentState extends State<Payment> {
   var _source = null;
   var result = null;
   @override
-  // initState() {
-  //   super.initState();
-  //   StripePayment.setOptions(StripeOptions(
-  //       publishableKey:
-  //           "pk_test_51LJFSTSBve02oYMv5wPDWgecH8OdzOD9opy79xLgz5DL1kqPimWKeqGzPml5aVo8NR2tdfnSq5nvAycwd61toxCF001oqGBw11",
-  //       merchantId: "YOUR_MERCHANT_ID",
-  //       androidPayMode: 'test'));
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,8 +45,15 @@ class _PaymentState extends State<Payment> {
         child: ElevatedButton(
             child: Text("Payment"),
             onPressed: () async {
-              result = await client.query(options);
-              print(result.data['getFoods']);
+              try {
+                result = await client.query(options);
+                var foods = result.data['getFoods']
+                    .map((fo) => Food.fromJson(fo))
+                    .toList();
+                print(foods[0].dips[0].name);
+              } catch (e) {
+                print(e);
+              }
             }
 
             // },
