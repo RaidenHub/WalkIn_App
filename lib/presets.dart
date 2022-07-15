@@ -21,6 +21,7 @@ class _presetsState extends State<presets> {
       //   backgroundColor: Theme.of(context).primaryColor,
       // ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.amber.shade800,
         onPressed: () {
           Navigator.push(
             context,
@@ -112,28 +113,28 @@ class _presetsState extends State<presets> {
                 ),
                 // Padding(padding: EdgeInsets.only(right: 15)),
 
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Padding(padding: EdgeInsets.only(left: 200)),
-                    ElevatedButton.icon(
-                        style: ElevatedButton.styleFrom(
-                            primary: Theme.of(context).primaryColor,
-                            padding: EdgeInsets.symmetric(horizontal: 10),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30))),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const NewPresets()),
-                          );
-                        },
-                        icon: Icon(Icons.add),
-                        label: Text('Add Presets')),
-                  ],
-                ),
+                // Row(
+                //   mainAxisSize: MainAxisSize.max,
+                //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                //   children: [
+                //     Padding(padding: EdgeInsets.only(left: 200)),
+                //     ElevatedButton.icon(
+                //         style: ElevatedButton.styleFrom(
+                //             primary: Theme.of(context).primaryColor,
+                //             padding: EdgeInsets.symmetric(horizontal: 10),
+                //             shape: RoundedRectangleBorder(
+                //                 borderRadius: BorderRadius.circular(30))),
+                //         onPressed: () {
+                //           Navigator.push(
+                //             context,
+                //             MaterialPageRoute(
+                //                 builder: (context) => const NewPresets()),
+                //           );
+                //         },
+                //         icon: Icon(Icons.add),
+                //         label: Text('Add Presets')),
+                //   ],
+                // ),
                 Card(
                   color: Theme.of(context).primaryColor,
                   margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),

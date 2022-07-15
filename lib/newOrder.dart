@@ -17,6 +17,18 @@ class NewOrder extends StatefulWidget {
 
 class _NewOrderState extends State<NewOrder> {
   final db = DatabaseService();
+  List<DropdownMenuItem<String>> get dropdownItems {
+    List<DropdownMenuItem<String>> menuItems = [
+      DropdownMenuItem(child: Text("Toppings"), value: "Toppings"),
+      DropdownMenuItem(child: Text("Sauces"), value: "Sauces"),
+      DropdownMenuItem(child: Text("Beverges"), value: "Beverages"),
+      DropdownMenuItem(child: Text("Food"), value: "Food"),
+    ];
+    return menuItems;
+  }
+
+  String selectedValue = "Toppings";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,6 +114,13 @@ class _NewOrderState extends State<NewOrder> {
                           )),
                     ],
                   ),
+                  Padding(padding: EdgeInsets.symmetric(vertical: 10)),
+                  DropdownButton(
+                    value: selectedValue,
+                    items: dropdownItems,
+                    onChanged: (Object? value) {},
+                  ),
+
                   FutureBuilder<List<Food>?>(
                       future: db.getFoods(),
                       builder: (context, snapshot) {
@@ -118,7 +137,7 @@ class _NewOrderState extends State<NewOrder> {
                             ),
                           );
                         } else {
-                          return Text("loadin");
+                          return Text("loading");
                         }
                       })
                 ],

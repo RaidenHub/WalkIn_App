@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 // import 'package: CustomTextStyle.dart';
 import 'package:walk_in/CustomTextStyle.dart';
 import 'package:walk_in/CustomUtils.dart';
+import 'package:walk_in/main.dart';
 import 'package:walk_in/profile.dart';
+import 'package:walk_in/utils/payment.dart';
 
 // import 'CheckOutPage.dart';
 
@@ -52,7 +54,14 @@ class CartPState extends State<CartP> {
                         borderRadius: BorderRadius.circular(15),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () async {
+                      await payment(
+                          amount: 1221,
+                          userId: "userId",
+                          name: "name",
+                          email: 'email@gmail.com',
+                          phone: "1234567890");
+                    },
                     child: Text(
                       'Checkout',
                       style: TextStyle(fontSize: 18),

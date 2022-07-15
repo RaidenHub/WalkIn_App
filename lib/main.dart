@@ -9,9 +9,11 @@ import 'package:walk_in/bottomNavigationBar.dart';
 import 'package:walk_in/cart.dart';
 import 'package:walk_in/login.dart';
 import 'package:walk_in/newOrder.dart';
+import 'package:walk_in/presets.dart';
 import 'package:walk_in/profile.dart';
 import 'package:walk_in/shop.dart';
 import 'package:walk_in/cart.dart';
+import 'package:walk_in/utils/payment.dart';
 // import 'package:stripe_payment/stripe_payment.dart';
 
 import 'GraphQl/client.dart';
@@ -19,7 +21,7 @@ import 'jsonToDart/food.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: NewOrder(),
+    home: MyApp(),
   ));
 }
 
@@ -45,15 +47,21 @@ class _PaymentState extends State<Payment> {
         child: ElevatedButton(
             child: Text("Payment"),
             onPressed: () async {
-              try {
-                result = await client.query(options);
-                var foods = result.data['getFoods']
-                    .map((fo) => Food.fromJson(fo))
-                    .toList();
-                print(foods[0].dips[0].name);
-              } catch (e) {
-                print(e);
-              }
+              // try {
+              //   result = await client.query(options);
+              //   var foods = result.data['getFoods']
+              //       .map((fo) => Food.fromJson(fo))
+              //       .toList();
+              //   print(foods[0].dips[0].name);
+              // } catch (e) {
+              //   print(e);
+              // }
+              await payment(
+                  amount: 1221,
+                  userId: "userId",
+                  name: "name",
+                  email: 'email@gmail.com',
+                  phone: "1234567890");
             }
 
             // },

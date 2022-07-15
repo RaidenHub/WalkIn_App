@@ -7,12 +7,48 @@ class Toppings extends StatefulWidget {
   State<Toppings> createState() => _ToppingsState();
 }
 
+enum SingingCharacter { Olives, Shimla, Dhaniya }
+
 class _ToppingsState extends State<Toppings> {
+  SingingCharacter? _character = null;
+  var array = [];
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 300,
-      child: Text('hvuei'),
+    return Column(
+      children: [
+        Text('Top'),
+        // Padding(padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8)),
+        ...SingingCharacter.values
+            .map((character) => Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: ListTile(
+                    // tileColor: Colors.amber,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    // title: const Text('Cheese Dip'),
+                    title: Text(character.name),
+                    leading: Checkbox(
+                      // checkColor: Colors.amber.shade800,
+                      activeColor: Colors.amber[800],
+
+                      value: this.array.contains(character.name),
+                      onChanged: (value) {
+                        setState(() {
+                          // this.showvalue = value!;
+                          if (value == true) {
+                            array.add(character.name);
+                          } else {
+                            array.remove(character.name);
+                          }
+                          ;
+                        });
+                      },
+                    ),
+                  ),
+                ))
+            .toList(),
+      ],
     );
   }
 }

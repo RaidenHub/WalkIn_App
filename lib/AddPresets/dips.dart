@@ -12,7 +12,8 @@ enum SingingCharacter { cheesedip, periperidip }
 var dips = ['cheesedip', 'periperidip', 'hello'];
 
 class _DipsState extends State<Dips> {
-  SingingCharacter? _character = SingingCharacter.cheesedip;
+  SingingCharacter? _character = null;
+  var array = [];
 
   @override
   Widget build(BuildContext context) {
@@ -24,20 +25,28 @@ class _DipsState extends State<Dips> {
             .map((character) => Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: ListTile(
-                      // tileColor: Colors.amber,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      // title: const Text('Cheese Dip'),
-                      title: Text(character.toString()),
-                      leading: Radio<SingingCharacter>(
-                        value: character,
-                        groupValue: _character,
-                        onChanged: (SingingCharacter? value) {
-                          setState(() {
-                            _character = value;
-                          });
-                        },
-                      )),
+                    // tileColor: Colors.amber,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    // title: const Text('Cheese Dip'),
+                    title: Text(character.name),
+                    leading: Checkbox(
+                      // checkColor: Colors.amber.shade800,
+                      activeColor: Colors.amber[800],
+                      value: this.array.contains(character.name),
+                      onChanged: (value) {
+                        setState(() {
+                          // this.showvalue = value!;
+                          if (value == true) {
+                            array.add(character.name);
+                          } else {
+                            array.remove(character.name);
+                          }
+                          ;
+                        });
+                      },
+                    ),
+                  ),
                 ))
             .toList(),
       ],

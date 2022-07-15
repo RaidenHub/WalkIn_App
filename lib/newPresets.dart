@@ -4,6 +4,7 @@ import 'package:walk_in/AddPresets/dips.dart';
 import 'package:walk_in/AddPresets/foodItems.dart';
 import 'package:walk_in/AddPresets/sides.dart';
 import 'package:walk_in/AddPresets/toppings.dart';
+import 'package:walk_in/presets.dart';
 
 import 'bottomNavigationBar.dart';
 
@@ -31,6 +32,16 @@ class _NewPresetsState extends State<NewPresets> {
       appBar: AppBar(
         // title: Text(widget.title),
         backgroundColor: Theme.of(context).primaryColor,
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.amber.shade800,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const presets()),
+          );
+        },
+        child: Icon(Icons.check),
       ),
       body: Container(
           child: Column(
