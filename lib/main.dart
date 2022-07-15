@@ -15,11 +15,12 @@ import 'package:walk_in/cart.dart';
 // import 'package:stripe_payment/stripe_payment.dart';
 
 import 'GraphQl/client.dart';
+import 'db/db.dart';
 import 'jsonToDart/food.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: NewOrder(),
+    home: Payment(),
   ));
 }
 
@@ -31,6 +32,7 @@ class Payment extends StatefulWidget {
 }
 
 class _PaymentState extends State<Payment> {
+  final db = DatabaseService();
   var _source = null;
   var result = null;
   @override
@@ -43,14 +45,10 @@ class _PaymentState extends State<Payment> {
       body: Center(
         // evalued button
         child: ElevatedButton(
-            child: Text("Payment"),
+            child: Text("Payments"),
             onPressed: () async {
               try {
-                result = await client.query(options);
-                var foods = result.data['getFoods']
-                    .map((fo) => Food.fromJson(fo))
-                    .toList();
-                print(foods[0].dips[0].name);
+                print(await db.getFoods());
               } catch (e) {
                 print(e);
               }

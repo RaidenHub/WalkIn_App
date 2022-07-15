@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:walk_in/presets.dart';
 import 'package:walk_in/shop.dart';
 
+import 'Classes/food/food.dart';
 import 'bottomNavigationBar.dart';
 import 'db/db.dart';
 import 'jsonToDart/food.dart';
@@ -102,7 +103,7 @@ class _NewOrderState extends State<NewOrder> {
                           )),
                     ],
                   ),
-                  FutureBuilder<List<Food>?>(
+                  FutureBuilder<List<Food?>?>(
                       future: db.getFoods(),
                       builder: (context, snapshot) {
                         if (snapshot.data != null &&
@@ -112,7 +113,7 @@ class _NewOrderState extends State<NewOrder> {
                             child: ListView.builder(
                               itemBuilder: (context, index) => Card(
                                 child: Text(
-                                    snapshot.data?[index].category ?? "lol"),
+                                    snapshot.data?[index]!.category! ?? "lol"),
                               ),
                               itemCount: snapshot.data?.length,
                             ),
