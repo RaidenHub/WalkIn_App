@@ -2,11 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:graphql/client.dart';
+import 'package:provider/provider.dart';
 // import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:walk_in/AddPresets/carousel.dart';
 
 import 'package:walk_in/bottomNavigationBar.dart';
 import 'package:walk_in/cart.dart';
+import 'package:walk_in/db/db.dart';
 import 'package:walk_in/login.dart';
 import 'package:walk_in/newOrder.dart';
 import 'package:walk_in/presets.dart';
@@ -16,7 +18,10 @@ import 'package:walk_in/cart.dart';
 import 'package:walk_in/utils/payment.dart';
 // import 'package:stripe_payment/stripe_payment.dart';
 
+import 'Classes/shopper/shopper/shopper.dart';
+import 'Classes/user/user/user.dart';
 import 'GraphQl/client.dart';
+import 'db/authToken.dart';
 import 'jsonToDart/food.dart';
 
 void main() {
@@ -78,11 +83,21 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'WalkIn',
-      theme: ThemeData(primaryColor: Colors.amber[800]),
-      home: const MyHomePage(title: 'WalkIn'),
-    );
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (context) => AuthToken(),
+          ),
+        ],
+        builder: (context, _) {
+          return MaterialApp(
+            title: 'WalkIn',
+            theme: ThemeData(primaryColor: Colors.amber[800]),
+            home: MyHomePage(
+              title: '',
+            ),
+          );
+        });
   }
 }
 
@@ -96,8 +111,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int index = 0;
+  final db = DatabaseService();
 
-  var shops = ['shop1', 'shop2', 'shop3', 'shop4'];
+  // var shops = ['shop1', 'shop2', 'shop3', 'shop4'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -136,35 +152,49 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: shops
-                      .map((e) => InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const Shops()));
-                            },
-                            child: Container(
-                              height: 150,
-                              width: 150,
-                              margin: EdgeInsets.only(left: 15, top: 10),
-                              child: Container(
-                                // shape: RoundedRectangleBorder(
-                                //     borderRadius: BorderRadius.circular(20)),
-                                color: Theme.of(context).primaryColor,
-                                child: Text(
-                                  (e),
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontStyle: FontStyle.italic,
-                                      height: 2,
-                                      fontSize: 25),
-                                ),
-                              ),
-                            ),
-                          ))
-                      .toList(),
+                child: FutureBuilder<List<Shopper?>>(
+                  future: db.getShops(),
+                  builder: (context, snapshot) {
+                    if (snapshot.data != null && snapshot.data!.length != 0) {
+                      return Row(
+                        children: snapshot.data!
+                            .map((e) => InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const Shops()));
+                                  },
+                                  child: Container(
+                                    height: 150,
+                                    width: 150,
+                                    margin: EdgeInsets.only(left: 15, top: 10),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: NetworkImage(e!.image!),
+                                              fit: BoxFit.cover)),
+                                      // shape: RoundedRectangleBorder(
+                                      //     borderRadius: BorderRadius.circular(20)),
+
+                                      // color: Theme.of(context).primaryColor,
+                                      child: Text(
+                                        e.name ?? "Prashannt 1",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontStyle: FontStyle.italic,
+                                            height: 2,
+                                            fontSize: 25),
+                                      ),
+                                    ),
+                                  ),
+                                ))
+                            .toList(),
+                      );
+                    }
+                    return Text("Loadinggggg....");
+                  },
                 ),
               ),
             )

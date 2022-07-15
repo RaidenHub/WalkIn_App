@@ -4,18 +4,25 @@ part 'extra.g.dart';
 
 @JsonSerializable()
 class Extra {
-	dynamic isAvailable;
-	String? name;
-	int? price;
+  String? name;
+  int? price;
 
-	Extra({this.isAvailable, this.name, this.price});
+  Extra({this.name, this.price});
 
-	@override
-	String toString() {
-		return 'Extra(isAvailable: $isAvailable, name: $name, price: $price)';
-	}
+  @override
+  String toString() => 'Extra(name: $name, price: $price)';
 
-	factory Extra.fromJson(Map<String, dynamic> json) => _$ExtraFromJson(json);
+  factory Extra.fromJson(Map<String, dynamic> json) => _$ExtraFromJson(json);
 
-	Map<String, dynamic> toJson() => _$ExtraToJson(this);
+  Map<String, dynamic> toJson() => _$ExtraToJson(this);
+
+  Extra copyWith({
+    String? name,
+    int? price,
+  }) {
+    return Extra(
+      name: name ?? this.name,
+      price: price ?? this.price,
+    );
+  }
 }

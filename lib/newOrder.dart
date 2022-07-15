@@ -115,13 +115,16 @@ class _NewOrderState extends State<NewOrder> {
                     ],
                   ),
                   Padding(padding: EdgeInsets.symmetric(vertical: 10)),
-                  DropdownButton(
+                  DropdownButton<String>(
                     value: selectedValue,
                     items: dropdownItems,
-                    onChanged: (Object? value) {},
+                    onChanged: (var value) {
+                      selectedValue = value!;
+                      setState(() {});
+                    },
                   ),
 
-                  FutureBuilder<List<Food>?>(
+                  FutureBuilder<List<Food?>>(
                       future: db.getFoods(),
                       builder: (context, snapshot) {
                         if (snapshot.data != null &&
@@ -131,7 +134,7 @@ class _NewOrderState extends State<NewOrder> {
                             child: ListView.builder(
                               itemBuilder: (context, index) => Card(
                                 child: Text(
-                                    snapshot.data?[index].category ?? "lol"),
+                                    snapshot.data?[index]?.category ?? "lol"),
                               ),
                               itemCount: snapshot.data?.length,
                             ),

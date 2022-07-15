@@ -62,22 +62,22 @@ class _ShopsState extends State<Shops> {
                       );
                     },
                     child: Text('Recommended')),
-                Padding(padding: EdgeInsets.symmetric(horizontal: 5)),
-                OutlinedButton(
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0))),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const NewOrder()),
-                      );
-                    },
-                    child: Text('New Order',
-                        style:
-                            TextStyle(color: Theme.of(context).primaryColor))),
+                // Padding(padding: EdgeInsets.symmetric(horizontal: 5)),
+                // OutlinedButton(
+                //     style: ButtonStyle(
+                //       shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                //           borderRadius: BorderRadius.circular(30.0))),
+                //     ),
+                //     onPressed: () {
+                //       Navigator.push(
+                //         context,
+                //         MaterialPageRoute(
+                //             builder: (context) => const NewOrder()),
+                //       );
+                //     },
+                //     child: Text('New Order',
+                //         style:
+                //             TextStyle(color: Theme.of(context).primaryColor))),
                 Padding(padding: EdgeInsets.symmetric(horizontal: 5)),
                 OutlinedButton(
                     style: ButtonStyle(

@@ -20,7 +20,79 @@ final GraphQLClient client = GraphQLClient(
   link: _link,
 );
 
-const String myquery = r'''
+const String getOrderQueryString = r'''
+query MyQuery( $token: String ) {
+  getOrder(token: $token) {
+    _id
+    createdAt
+    customeName
+    total
+    status
+    paymentMethod
+    discount
+    items {
+      _id
+      dips {
+        name
+        price
+      }
+      extras {
+        name
+        price
+      }
+      price
+      productId
+      quantity
+      sauces {
+        name
+        price
+      }
+      shopId
+      toppings {
+        price
+        name
+      }
+      userId
+    }
+    paymentId
+  }
+}
+
+''';
+const String getCartQueryString = r'''
+query MyQuery($token: String ) {
+  getCart(token: $token) {
+    _id
+    price
+    productId
+    quantity
+    shopId
+    userId
+  }
+}
+''';
+const String getShopQueryString = r'''
+query MyQuery {
+  getShoppers {
+    name
+    _id
+    image
+    address
+    city
+    category
+    country
+    email
+    isActive
+    isDeleted
+    phone
+    state
+    subCategory
+    userId
+    zip
+  }
+}
+''';
+const String getFoodQueryString = r'''
 query MyQuery {
   getFoods {
     _id
@@ -60,8 +132,29 @@ query MyQuery {
 }
 ''';
 
-final QueryOptions options = QueryOptions(
-  document: gql(myquery),
+final QueryOptions getFoodQuery = QueryOptions(
+  document: gql(getFoodQueryString),
+  variables: <String, dynamic>{
+    // 'nRepositories': nRepositories,
+  },
+);
+
+final QueryOptions getShopQuery = QueryOptions(
+  document: gql(getShopQueryString),
+  variables: <String, dynamic>{
+    // 'nRepositories': nRepositories,
+  },
+);
+
+final QueryOptions getOrderQuery = QueryOptions(
+  document: gql(getOrderQueryString),
+  variables: <String, dynamic>{
+    // 'nRepositories': nRepositories,
+  },
+);
+
+final QueryOptions getCartQuery = QueryOptions(
+  document: gql(getCartQueryString),
   variables: <String, dynamic>{
     // 'nRepositories': nRepositories,
   },

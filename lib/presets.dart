@@ -78,23 +78,23 @@ class _presetsState extends State<presets> {
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor))),
                     Padding(padding: EdgeInsets.symmetric(horizontal: 5)),
-                    OutlinedButton(
-                        style: ButtonStyle(
-                          shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0))),
-                        ),
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const NewOrder()),
-                          );
-                        },
-                        child: Text('New Order',
-                            style: TextStyle(
-                                color: Theme.of(context).primaryColor))),
-                    Padding(padding: EdgeInsets.symmetric(horizontal: 5)),
+                    // OutlinedButton(
+                    //     style: ButtonStyle(
+                    //       shape: MaterialStateProperty.all(
+                    //           RoundedRectangleBorder(
+                    //               borderRadius: BorderRadius.circular(30.0))),
+                    //     ),
+                    //     onPressed: () {
+                    //       Navigator.pushReplacement(
+                    //         context,
+                    //         MaterialPageRoute(
+                    //             builder: (context) => const NewOrder()),
+                    //       );
+                    //     },
+                    //     child: Text('New Order',
+                    //         style: TextStyle(
+                    //             color: Theme.of(context).primaryColor))),
+                    // Padding(padding: EdgeInsets.symmetric(horizontal: 5)),
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           primary: Theme.of(context).primaryColor,

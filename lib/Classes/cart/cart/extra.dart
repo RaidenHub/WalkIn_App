@@ -4,19 +4,19 @@ part 'extra.g.dart';
 
 @JsonSerializable()
 class Extra {
-	dynamic isAvailable;
-	String? name;
-	int? price;
-	int? quantity;
+  dynamic isAvailable;
+  String? name;
+  int? price;
+  int? quantity;
 
-	Extra({this.isAvailable, this.name, this.price, this.quantity});
+  Extra({this.isAvailable, this.name, this.price, this.quantity});
 
-	@override
-	String toString() {
-		return 'Extra(isAvailable: $isAvailable, name: $name, price: $price, quantity: $quantity)';
-	}
+  @override
+  String toString() {
+    return 'Extra(isAvailable: $isAvailable, name: $name, price: $price, quantity: $quantity)';
+  }
 
-	factory Extra.fromJson(Map<String, dynamic> json) => _$ExtraFromJson(json);
+  factory Extra.fromJson(Map<String, dynamic> json) => _$ExtraFromJson(json);
 
-	Map<String, dynamic> toJson() => _$ExtraToJson(this);
+  Map<String, dynamic> toJson() => _$ExtraToJson(this);
 }

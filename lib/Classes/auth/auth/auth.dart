@@ -4,22 +4,22 @@ part 'auth.g.dart';
 
 @JsonSerializable()
 class Auth {
-	String? accessToken;
+  String? accessToken;
 
-	Auth({this.accessToken});
+  Auth({this.accessToken});
 
-	@override
-	String toString() => 'Auth(accessToken: $accessToken)';
+  @override
+  String toString() => 'Auth(accessToken: $accessToken)';
 
-	factory Auth.fromJson(Map<String, dynamic> json) => _$AuthFromJson(json);
+  factory Auth.fromJson(Map<String, dynamic> json) => _$AuthFromJson(json);
 
-	Map<String, dynamic> toJson() => _$AuthToJson(this);
+  Map<String, dynamic> toJson() => _$AuthToJson(this);
 
-	Auth copyWith({
-		String? accessToken,
-	}) {
-		return Auth(
-			accessToken: accessToken ?? this.accessToken,
-		);
-	}
+  Auth copyWith({
+    String? accessToken,
+  }) {
+    return Auth(
+      accessToken: accessToken ?? this.accessToken,
+    );
+  }
 }

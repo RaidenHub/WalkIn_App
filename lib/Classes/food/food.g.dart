@@ -8,48 +8,54 @@ part of 'food.dart';
 
 Food _$FoodFromJson(Map<String, dynamic> json) => Food(
       id: json['_id'] as String?,
-      category: json['category'] as String?,
-      dips: (json['dips'] as List<dynamic>?)
-          ?.map((e) => Dip.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      description: json['description'] as String?,
-      discount: json['discount'] as int?,
-      extras: (json['extras'] as List<dynamic>?)
-          ?.map((e) => Extra.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      image: json['image'] as String?,
-      foodType: json['foodType'] as String?,
       name: json['name'] as String?,
-      numberOfFreeExtras: json['numberOfFreeExtras'] as int?,
-      numberOfFreeDips: json['numberOfFreeDips'] as int?,
-      numberOfFreeSauces: json['numberOfFreeSauces'] as int?,
-      numberOfFreeToppings: json['numberOfFreeToppings'] as int?,
+      description: json['description'] as String?,
+      image: json['image'] as String?,
       price: json['price'] as int?,
+      discount: json['discount'] as int?,
+      category: json['category'] as String?,
+      subCategory: json['subCategory'] as String?,
+      foodType: json['foodType'] as String?,
       status: json['status'] as String?,
-      sauces: (json['sauces'] as List<dynamic>?)
-          ?.map((e) => Sauce.fromJson(e as Map<String, dynamic>))
-          .toList(),
       toppings: (json['toppings'] as List<dynamic>?)
           ?.map((e) => Topping.fromJson(e as Map<String, dynamic>))
           .toList(),
+      dips: (json['dips'] as List<dynamic>?)
+          ?.map((e) => Dip.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      sauces: (json['sauces'] as List<dynamic>?)
+          ?.map((e) => Sauce.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      extras: (json['extras'] as List<dynamic>?)
+          ?.map((e) => Extra.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      numberOfFreeToppings: json['numberOfFreeToppings'] as int?,
+      numberOfFreeDips: json['numberOfFreeDips'] as int?,
+      numberOfFreeSauces: json['numberOfFreeSauces'] as int?,
+      numberOfFreeExtras: json['numberOfFreeExtras'] as int?,
+      v: json['__v'] as int?,
+      shopId: json['shopId'] as String?,
     );
 
 Map<String, dynamic> _$FoodToJson(Food instance) => <String, dynamic>{
       '_id': instance.id,
-      'category': instance.category,
-      'dips': instance.dips,
-      'description': instance.description,
-      'discount': instance.discount,
-      'extras': instance.extras,
-      'image': instance.image,
-      'foodType': instance.foodType,
       'name': instance.name,
-      'numberOfFreeExtras': instance.numberOfFreeExtras,
+      'description': instance.description,
+      'image': instance.image,
+      'price': instance.price,
+      'discount': instance.discount,
+      'category': instance.category,
+      'subCategory': instance.subCategory,
+      'foodType': instance.foodType,
+      'status': instance.status,
+      'toppings': instance.toppings,
+      'dips': instance.dips,
+      'sauces': instance.sauces,
+      'extras': instance.extras,
+      'numberOfFreeToppings': instance.numberOfFreeToppings,
       'numberOfFreeDips': instance.numberOfFreeDips,
       'numberOfFreeSauces': instance.numberOfFreeSauces,
-      'numberOfFreeToppings': instance.numberOfFreeToppings,
-      'price': instance.price,
-      'status': instance.status,
-      'sauces': instance.sauces,
-      'toppings': instance.toppings,
+      'numberOfFreeExtras': instance.numberOfFreeExtras,
+      '__v': instance.v,
+      'shopId': instance.shopId,
     };

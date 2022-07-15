@@ -4,18 +4,25 @@ part 'dip.g.dart';
 
 @JsonSerializable()
 class Dip {
-  dynamic isAvailable;
   String? name;
   int? price;
 
-  Dip({this.isAvailable, this.name, this.price});
+  Dip({this.name, this.price});
 
   @override
-  String toString() {
-    return 'Dip(isAvailable: $isAvailable, name: $name, price: $price)';
-  }
+  String toString() => 'Dip(name: $name, price: $price)';
 
   factory Dip.fromJson(Map<String, dynamic> json) => _$DipFromJson(json);
 
   Map<String, dynamic> toJson() => _$DipToJson(this);
+
+  Dip copyWith({
+    String? name,
+    int? price,
+  }) {
+    return Dip(
+      name: name ?? this.name,
+      price: price ?? this.price,
+    );
+  }
 }

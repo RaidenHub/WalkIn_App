@@ -4,20 +4,27 @@ part 'topping.g.dart';
 
 @JsonSerializable()
 class Topping {
-	dynamic isAvailable;
-	String? name;
-	int? price;
+  String? name;
+  int? price;
 
-	Topping({this.isAvailable, this.name, this.price});
+  Topping({this.name, this.price});
 
-	@override
-	String toString() {
-		return 'Topping(isAvailable: $isAvailable, name: $name, price: $price)';
-	}
+  @override
+  String toString() => 'Topping(name: $name, price: $price)';
 
-	factory Topping.fromJson(Map<String, dynamic> json) {
-		return _$ToppingFromJson(json);
-	}
+  factory Topping.fromJson(Map<String, dynamic> json) {
+    return _$ToppingFromJson(json);
+  }
 
-	Map<String, dynamic> toJson() => _$ToppingToJson(this);
+  Map<String, dynamic> toJson() => _$ToppingToJson(this);
+
+  Topping copyWith({
+    String? name,
+    int? price,
+  }) {
+    return Topping(
+      name: name ?? this.name,
+      price: price ?? this.price,
+    );
+  }
 }

@@ -5,6 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:walk_in/cart.dart';
 import 'package:walk_in/main.dart';
 import 'package:walk_in/registerPage.dart';
+
+import 'db/db.dart';
 // import 'Register.dart';
 // import 'home.dart';
 
@@ -12,7 +14,7 @@ class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
   final formKey = GlobalKey<FormState>();
   int justify = 0;
-
+  final db = DatabaseService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,23 +101,29 @@ class LoginPage extends StatelessWidget {
                             ),
                             RaisedButton(
                               color: Colors.amber,
-                              onPressed: () {
+                              onPressed: () async {
                                 // Validate returns true if the form is valid, or false otherwise.
-                                if (formKey.currentState!.validate()) {
-                                  // If the form is valid, display a snackbar. In the real world,
-                                  // you'd often call a server or save the information in a database.
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(content: Text('')));
-                                  justify = 1;
-
-                                  Navigator.pushReplacement<void, void>(
+                                // if (formKey.currentState!.validate()) {
+                                // If the form is valid, display a snackbar. In the real world,
+                                // you'd often call a server or save the information in a database.
+                                // ScaffoldMessenger.of(context).showSnackBar(
+                                //     SnackBar(content: Text('')));
+                                // justify = 1;
+                                if (await db.loginFun(
+                                    "string1", "string", context)) {
+                                  return Navigator.pushReplacement<void, void>(
                                     context,
                                     MaterialPageRoute<void>(
                                       builder: (BuildContext context) =>
-                                          const MyApp(),
+                                          const MyHomePage(
+                                        title: '',
+                                      ),
                                     ),
                                   );
                                 }
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text('Noo CHeating ')));
+                                // }
                               },
                               child: Text('Sign In'),
                             ),

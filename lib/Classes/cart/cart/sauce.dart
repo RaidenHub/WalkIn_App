@@ -4,19 +4,19 @@ part 'sauce.g.dart';
 
 @JsonSerializable()
 class Sauce {
-	dynamic isAvailable;
-	String? name;
-	int? price;
-	int? quantity;
+  dynamic isAvailable;
+  String? name;
+  int? price;
+  int? quantity;
 
-	Sauce({this.isAvailable, this.name, this.price, this.quantity});
+  Sauce({this.isAvailable, this.name, this.price, this.quantity});
 
-	@override
-	String toString() {
-		return 'Sauce(isAvailable: $isAvailable, name: $name, price: $price, quantity: $quantity)';
-	}
+  @override
+  String toString() {
+    return 'Sauce(isAvailable: $isAvailable, name: $name, price: $price, quantity: $quantity)';
+  }
 
-	factory Sauce.fromJson(Map<String, dynamic> json) => _$SauceFromJson(json);
+  factory Sauce.fromJson(Map<String, dynamic> json) => _$SauceFromJson(json);
 
-	Map<String, dynamic> toJson() => _$SauceToJson(this);
+  Map<String, dynamic> toJson() => _$SauceToJson(this);
 }
