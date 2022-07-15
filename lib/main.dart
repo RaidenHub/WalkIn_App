@@ -1,11 +1,8 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:graphql/client.dart';
 import 'package:provider/provider.dart';
-// import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:walk_in/AddPresets/carousel.dart';
-
 import 'package:walk_in/bottomNavigationBar.dart';
 import 'package:walk_in/cart.dart';
 import 'package:walk_in/db/db.dart';
@@ -16,13 +13,10 @@ import 'package:walk_in/profile.dart';
 import 'package:walk_in/shop.dart';
 import 'package:walk_in/cart.dart';
 import 'package:walk_in/utils/payment.dart';
-// import 'package:stripe_payment/stripe_payment.dart';
-
 import 'Classes/shopper/shopper/shopper.dart';
 import 'Classes/user/user/user.dart';
 import 'GraphQl/client.dart';
 import 'db/authToken.dart';
-import 'jsonToDart/food.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -163,8 +157,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) =>
-                                                const Shops()));
+                                            builder: (context) => Shops(
+                                                  shopId: e!.id!,
+                                                )));
                                   },
                                   child: Container(
                                     height: 150,

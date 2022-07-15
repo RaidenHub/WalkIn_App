@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:walk_in/presets.dart';
 import 'package:walk_in/shop.dart';
 
+import 'Classes/food/food.dart';
 import 'bottomNavigationBar.dart';
 import 'db/db.dart';
-import 'jsonToDart/food.dart';
 
 class NewOrder extends StatefulWidget {
   const NewOrder({Key? key}) : super(key: key);
@@ -70,7 +70,9 @@ class _NewOrderState extends State<NewOrder> {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const Shops()),
+                                  builder: (context) => Shops(
+                                        shopId: "s",
+                                      )),
                             );
                           },
                           child: Text(

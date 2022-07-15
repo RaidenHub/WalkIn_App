@@ -70,8 +70,7 @@ class _presetsState extends State<presets> {
                         onPressed: () {
                           Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) => const Shops()),
+                            MaterialPageRoute(builder: (context) => Shops()),
                           );
                         },
                         child: Text('Recommended',

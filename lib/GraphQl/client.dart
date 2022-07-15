@@ -59,8 +59,48 @@ query MyQuery( $token: String ) {
 }
 
 ''';
+const String getFoodByShopIDQueryString = r'''
+query MyQuery($shopId: String) {
+  getFoodsShopId(shopId: $shopId) {
+    shopId
+    category
+    _id
+    description
+    dips {
+      isAvailable
+      name
+      price
+    }
+    discount
+    foodType
+    extras {
+      isAvailable
+      name
+      price
+    }
+    image
+    name
+    numberOfFreeDips
+    numberOfFreeExtras
+    numberOfFreeSauces
+    sauces {
+      isAvailable
+      name
+      price
+    }
+    price
+    numberOfFreeToppings
+    status
+    toppings {
+      isAvailable
+      name
+      price
+    }
+  }
+}
+''';
 const String getCartQueryString = r'''
-query MyQuery($token: String ) {
+query MyQuery($token: String) {
   getCart(token: $token) {
     _id
     price
@@ -68,6 +108,30 @@ query MyQuery($token: String ) {
     quantity
     shopId
     userId
+    toppings {
+      isAvailable
+      price
+      name
+      quantity
+    }
+    sauces {
+      name
+      isAvailable
+      price
+      quantity
+    }
+    extras {
+      isAvailable
+      name
+      quantity
+      price
+    }
+    dips {
+      isAvailable
+      name
+      price
+      quantity
+    }
   }
 }
 ''';
@@ -138,6 +202,25 @@ final QueryOptions getFoodQuery = QueryOptions(
     // 'nRepositories': nRepositories,
   },
 );
+getCartQuery(String token) {
+  return QueryOptions(
+    document: gql(getCartQueryString),
+    variables: <String, dynamic>{
+      "token": token,
+      // 'nRepositories': nRepositories,
+    },
+  );
+}
+
+getFoodByShopIdQuery(String shopId) {
+  return QueryOptions(
+    document: gql(getFoodByShopIDQueryString),
+    variables: <String, dynamic>{
+      "shopId": shopId,
+      // 'nRepositories': nRepositories,
+    },
+  );
+}
 
 final QueryOptions getShopQuery = QueryOptions(
   document: gql(getShopQueryString),
@@ -153,12 +236,6 @@ final QueryOptions getOrderQuery = QueryOptions(
   },
 );
 
-final QueryOptions getCartQuery = QueryOptions(
-  document: gql(getCartQueryString),
-  variables: <String, dynamic>{
-    // 'nRepositories': nRepositories,
-  },
-);
 
 // final QueryResult result = await client.query(options);
 

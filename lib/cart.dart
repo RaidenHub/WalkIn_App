@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 // import 'package: CustomTextStyle.dart';
 import 'package:walk_in/CustomTextStyle.dart';
 import 'package:walk_in/CustomUtils.dart';
+import 'package:walk_in/db/db.dart';
 import 'package:walk_in/main.dart';
 import 'package:walk_in/profile.dart';
 import 'package:walk_in/utils/payment.dart';
+
+import 'Classes/cart/cart/cart.dart';
+import 'Classes/food/food.dart';
 
 // import 'CheckOutPage.dart';
 
@@ -17,6 +21,7 @@ class CartP extends StatefulWidget {
 }
 
 class CartPState extends State<CartP> {
+  final db = DatabaseService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +32,7 @@ class CartPState extends State<CartP> {
             return ListView(
               children: <Widget>[
                 createHeader(),
-                createCartList(),
+                createCartList(context),
               ],
             );
           },
@@ -86,18 +91,26 @@ class CartPState extends State<CartP> {
     );
   }
 
-  createCartList() {
-    return ListView.builder(
-      shrinkWrap: true,
-      primary: false,
-      itemBuilder: (context, position) {
-        return createCartListItem();
-      },
-      itemCount: 3,
-    );
+  createCartList(BuildContext context) {
+    return FutureBuilder<List<Cart?>>(
+        future: db.getCartS(context),
+        // future: db.getCartS(context),
+        builder: (context, snapshot) {
+          if (snapshot.data != null) {
+            return ListView.builder(
+              shrinkWrap: true,
+              primary: false,
+              itemBuilder: (context, position) {
+                return createCartListItem(snapshot.data![position]!);
+              },
+              itemCount: snapshot.data!.length,
+            );
+          }
+          return Text("loading");
+        });
   }
 
-  createCartListItem() {
+  createCartListItem(Cart cart) {
     return Stack(
       children: <Widget>[
         Container(
@@ -128,7 +141,7 @@ class CartPState extends State<CartP> {
                       Container(
                         padding: EdgeInsets.only(right: 8, top: 4),
                         child: Text(
-                          "NIKE XTM Basketball Shoeas",
+                          " cart.!",
                           maxLines: 2,
                           softWrap: true,
                           style: CustomTextStyle.textFormFieldSemiBold
@@ -137,7 +150,7 @@ class CartPState extends State<CartP> {
                       ),
                       Utils.getSizedBox(height: 6),
                       Text(
-                        "Green M",
+                        "food.category!",
                         style: CustomTextStyle.textFormFieldRegular
                             .copyWith(color: Colors.grey, fontSize: 14),
                       ),
@@ -146,7 +159,7 @@ class CartPState extends State<CartP> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
-                              "\$299.00",
+                              "₹" + cart.price.toString(),
                               style: CustomTextStyle.textFormFieldBlack
                                   .copyWith(color: Colors.green),
                             ),
@@ -166,7 +179,7 @@ class CartPState extends State<CartP> {
                                     padding: const EdgeInsets.only(
                                         bottom: 2, right: 12, left: 12),
                                     child: Text(
-                                      "1",
+                                      cart.quantity.toString(),
                                       style:
                                           CustomTextStyle.textFormFieldSemiBold,
                                     ),

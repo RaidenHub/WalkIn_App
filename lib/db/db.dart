@@ -4,10 +4,11 @@ import 'package:walk_in/Classes/shopper/shopper/shopper.dart';
 import 'package:walk_in/db/authToken.dart';
 
 import '../Classes/auth/auth/auth.dart';
+import '../Classes/cart/cart/cart.dart';
+import '../Classes/food/food.dart';
 import '../Classes/user/user/user.dart';
 import '../GraphQl/client.dart';
 import '../GraphQl/mutations.dart';
-import '../jsonToDart/food.dart';
 
 class DatabaseService {
   Future<bool> loginFun(
@@ -38,6 +39,20 @@ class DatabaseService {
     }
   }
 
+  Future<List<Food?>> getByShopId(String shopId) async {
+    print(shopId);
+    try {
+      var result = await client.query(getFoodByShopIdQuery(shopId));
+      var foods = result.data!['getFoodsShopId']
+          .map<Food>((fo) => Food.fromJson(fo))
+          .toList();
+      return foods;
+    } catch (e) {
+      print(e);
+      return [];
+    }
+  }
+
   Future<List<Shopper?>> getShops() async {
     try {
       var result = await client.query(getShopQuery);
@@ -45,6 +60,22 @@ class DatabaseService {
           .map<Shopper>((shop) => Shopper.fromJson(shop))
           .toList();
       return shops;
+    } catch (e) {
+      print(e);
+      return [];
+    }
+  }
+
+  // getCart which takes token
+  Future<List<Cart?>> getCartS(BuildContext context) async {
+    final user = Provider.of<AuthToken>(context, listen: false);
+    String token = user.token;
+    try {
+      var result = await client.query(getCartQuery(token));
+      print(result);
+      var foods =
+          result.data!['getCart'].map<Cart>((fo) => Cart.fromJson(fo)).toList();
+      return foods;
     } catch (e) {
       print(e);
       return [];
