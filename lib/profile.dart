@@ -26,7 +26,7 @@ class _ProfileState extends State<Profile> {
               Container(
                 child: Container(
                   width: double.infinity,
-                  height: 200,
+                  height: 150,
                   child: Container(
                     alignment: Alignment(0.0, 2.5),
                     child: CircleAvatar(
@@ -41,7 +41,7 @@ class _ProfileState extends State<Profile> {
                 height: 60,
               ),
               Text(
-                "Rajat Palankar",
+                "Pavan Kulkarni",
                 style: TextStyle(
                     fontSize: 25.0,
                     color: Colors.blueGrey,
@@ -52,22 +52,22 @@ class _ProfileState extends State<Profile> {
                 height: 10,
               ),
               Text(
-                "Belgaum, India",
+                "Email: test@test.com",
                 style: TextStyle(
                     fontSize: 18.0,
                     color: Colors.black45,
-                    letterSpacing: 2.0,
+                    // letterSpacing: 2.0,
                     fontWeight: FontWeight.w300),
               ),
               SizedBox(
                 height: 10,
               ),
               Text(
-                "Address",
+                "Phone No: 1234567890",
                 style: TextStyle(
                     fontSize: 15.0,
                     color: Colors.black45,
-                    letterSpacing: 2.0,
+                    // letterSpacing: 2.0,
                     fontWeight: FontWeight.w300),
               ),
               SizedBox(
@@ -90,7 +90,43 @@ class _ProfileState extends State<Profile> {
                 height: 15,
               ),
               Card(
-                child: Column(children: [Text('OrderList')]),
+                color: Colors.amber.shade400,
+                margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                child: Container(
+                  height: 90,
+                  // color: Color.fromARGB(149, 130, 248, 124),
+                  padding: EdgeInsets.symmetric(vertical: 15),
+                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Aloo Tikki',
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold),
+                              ),
+                              Padding(padding: EdgeInsets.only(top: 5)),
+                              Text("₹60"),
+                              Padding(padding: EdgeInsets.only(top: 5)),
+                              Text('Fav Indian Burger')
+                            ],
+                          ),
+                          Image.network(
+                            'https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/uckbx3rr87jhakb81mbs',
+                            scale: 3,
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               )
             ],
           ),

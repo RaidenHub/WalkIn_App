@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:razorpay_web/razorpay_web.dart';
+import 'package:walk_in/main.dart';
 
 payment({
   required int amount,
@@ -7,10 +10,13 @@ payment({
   required String name,
   required String email,
   required String phone,
+  required BuildContext context,
 }) async {
   final _razorpay = Razorpay();
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     print("Success");
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => MyApp()));
     print(response.paymentId.toString());
   }
 
@@ -26,13 +32,13 @@ payment({
 
   var options = {
     'key': 'rzp_test_NsejSxR5U27dvg',
-    'amount': 100 * 100,
+    'amount': 60 * 100,
     'currency': 'INR',
-    "Notes": {"name": name, "email": email},
+    "Notes": {"name": 'Pavan', "email": 'test@test.com'},
     'user': userId,
     'prefill': {
-      'contact': "+91" + phone,
-      'email': email,
+      'contact': "+91" + '1234567890',
+      'email': 'test@test.com',
     },
   };
 

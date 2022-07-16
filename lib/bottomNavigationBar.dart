@@ -37,7 +37,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
             context, MaterialPageRoute(builder: (context) => CartP()));
       }
       if (index == 2) {
-        Navigator.pushReplacement(
+        Navigator.push(
             context, MaterialPageRoute(builder: (context) => Profile()));
       }
     });

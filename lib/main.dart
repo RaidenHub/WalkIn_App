@@ -30,52 +30,52 @@ void main() {
   ));
 }
 
-class Payment extends StatefulWidget {
-  const Payment({Key? key}) : super(key: key);
+// class Payment extends StatefulWidget {
+//   const Payment({Key? key}) : super(key: key);
 
-  @override
-  State<Payment> createState() => _PaymentState();
-}
+//   @override
+//   State<Payment> createState() => _PaymentState();
+// }
 
-class _PaymentState extends State<Payment> {
-  var _source = null;
-  var result = null;
-  @override
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Payment"),
-      ),
-      body: Center(
-        // evalued button
-        child: ElevatedButton(
-            child: Text("Payment"),
-            onPressed: () async {
-              // try {
-              //   result = await client.query(options);
-              //   var foods = result.data['getFoods']
-              //       .map((fo) => Food.fromJson(fo))
-              //       .toList();
-              //   print(foods[0].dips[0].name);
-              // } catch (e) {
-              //   print(e);
-              // }
-              await payment(
-                  amount: 1221,
-                  userId: "userId",
-                  name: "name",
-                  email: 'email@gmail.com',
-                  phone: "1234567890");
-            }
+// class _PaymentState extends State<Payment> {
+//   var _source = null;
+//   var result = null;
+//   @override
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text("Payment"),
+//       ),
+//       body: Center(
+//         // evalued button
+//         child: ElevatedButton(
+//             child: Text("Payment"),
+//             onPressed: () async {
+//               // try {
+//               //   result = await client.query(options);
+//               //   var foods = result.data['getFoods']
+//               //       .map((fo) => Food.fromJson(fo))
+//               //       .toList();
+//               //   print(foods[0].dips[0].name);
+//               // } catch (e) {
+//               //   print(e);
+//               // }
+//               await payment(
+//                   amount: 1221,
+//                   userId: "userId",
+//                   name: "name",
+//                   email: 'email@gmail.com',
+//                   phone: "1234567890");
+//             }
 
-            // },
+//             // },
 
-            ),
-      ),
-    );
-  }
-}
+//             ),
+//       ),
+//     );
+//   }
+// }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -91,6 +91,7 @@ class MyApp extends StatelessWidget {
         ],
         builder: (context, _) {
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             title: 'WalkIn',
             theme: ThemeData(primaryColor: Colors.amber[800]),
             home: MyHomePage(
@@ -166,28 +167,35 @@ class _MyHomePageState extends State<MyHomePage> {
                                             builder: (context) =>
                                                 const Shops()));
                                   },
-                                  child: Container(
-                                    height: 150,
-                                    width: 150,
-                                    margin: EdgeInsets.only(left: 15, top: 10),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: NetworkImage(e!.image!),
-                                              fit: BoxFit.cover)),
-                                      // shape: RoundedRectangleBorder(
-                                      //     borderRadius: BorderRadius.circular(20)),
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        height: 150,
+                                        width: 150,
+                                        margin:
+                                            EdgeInsets.only(left: 15, top: 10),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                  image:
+                                                      NetworkImage(e!.image!),
+                                                  fit: BoxFit.cover)),
+                                          // shape: RoundedRectangleBorder(
+                                          //     borderRadius: BorderRadius.circular(20)),
 
-                                      // color: Theme.of(context).primaryColor,
-                                      child: Text(
+                                          // color: Theme.of(context).primaryColor,
+                                        ),
+                                      ),
+                                      Text(
                                         e.name ?? "Prashannt 1",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                            fontStyle: FontStyle.italic,
-                                            height: 2,
+                                            // fontStyle: FontStyle.italic,
+                                            // fontWeight: FontWeight.bold,
+                                            // height: 2,
                                             fontSize: 25),
                                       ),
-                                    ),
+                                    ],
                                   ),
                                 ))
                             .toList(),

@@ -41,8 +41,8 @@ class CartPState extends State<CartP> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
-                  "Price",
-                  style: TextStyle(fontSize: 18),
+                  "₹ 60",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   width: 150,
@@ -60,7 +60,8 @@ class CartPState extends State<CartP> {
                           userId: "userId",
                           name: "name",
                           email: 'email@gmail.com',
-                          phone: "1234567890");
+                          phone: "1234567890",
+                          context: context);
                     },
                     child: Text(
                       'Checkout',
@@ -93,7 +94,7 @@ class CartPState extends State<CartP> {
       itemBuilder: (context, position) {
         return createCartListItem();
       },
-      itemCount: 3,
+      itemCount: 1,
     );
   }
 
@@ -112,11 +113,12 @@ class CartPState extends State<CartP> {
                 width: 80,
                 height: 80,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(14)),
-                  color: Colors.blue.shade200,
-                  // image: DecorationImage(
-                  //     image: AssetImage("images/shoes_1.png"))
-                ),
+                    borderRadius: BorderRadius.all(Radius.circular(14)),
+                    // color: Colors.blue.shade200,
+                    image: DecorationImage(
+                        image: NetworkImage(
+                            'https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/uckbx3rr87jhakb81mbs',
+                            scale: 2.5))),
               ),
               Expanded(
                 child: Container(
@@ -128,7 +130,7 @@ class CartPState extends State<CartP> {
                       Container(
                         padding: EdgeInsets.only(right: 8, top: 4),
                         child: Text(
-                          "NIKE XTM Basketball Shoeas",
+                          "Aloo Tikki",
                           maxLines: 2,
                           softWrap: true,
                           style: CustomTextStyle.textFormFieldSemiBold
@@ -137,7 +139,7 @@ class CartPState extends State<CartP> {
                       ),
                       Utils.getSizedBox(height: 6),
                       Text(
-                        "Green M",
+                        "Fav Indian Burger",
                         style: CustomTextStyle.textFormFieldRegular
                             .copyWith(color: Colors.grey, fontSize: 14),
                       ),
@@ -146,9 +148,9 @@ class CartPState extends State<CartP> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
-                              "\$299.00",
-                              style: CustomTextStyle.textFormFieldBlack
-                                  .copyWith(color: Colors.green),
+                              "₹ 60",
+                              // style: CustomTextStyle.textFormFieldBlack
+                              //     .copyWith(color: Colors.green),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),

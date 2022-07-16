@@ -3,6 +3,7 @@ import 'package:walk_in/newPresets.dart';
 import 'package:walk_in/shop.dart';
 
 import 'bottomNavigationBar.dart';
+import 'cart.dart';
 import 'newOrder.dart';
 
 class presets extends StatefulWidget {
@@ -135,25 +136,49 @@ class _presetsState extends State<presets> {
                 //         label: Text('Add Presets')),
                 //   ],
                 // ),
-                Card(
-                  color: Theme.of(context).primaryColor,
-                  margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                  child: Container(
-                    height: 80,
-                    // color: Color.fromARGB(149, 130, 248, 124),
-                    padding: EdgeInsets.symmetric(vertical: 15),
-                    margin: EdgeInsets.symmetric(horizontal: 10),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [Text('ItemName'), Text('Item PIcture')],
-                        ),
-                        Text("Price"),
-                        Text('Product Description')
-                      ],
+                InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => const CartP()));
+                  },
+                  child: Card(
+                    color: Colors.amber.shade400,
+                    margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                    child: Container(
+                      height: 90,
+                      // color: Color.fromARGB(149, 130, 248, 124),
+                      padding: EdgeInsets.symmetric(vertical: 15),
+                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Aloo Tikki',
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Padding(padding: EdgeInsets.only(top: 5)),
+                                  Text("₹60"),
+                                  Padding(padding: EdgeInsets.only(top: 5)),
+                                  Text('Fav Indian Burger')
+                                ],
+                              ),
+                              Image.network(
+                                'https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/uckbx3rr87jhakb81mbs',
+                                scale: 3,
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 )

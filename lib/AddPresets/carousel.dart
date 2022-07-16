@@ -63,7 +63,7 @@ class _CarouselState extends State<Carousel> {
                           borderRadius: BorderRadius.circular(20)),
                       child: Center(
                           child: Text(
-                        "Offers",
+                        "30% Discount \n on First Order ",
                         style: TextStyle(fontSize: 25),
                       )),
                     ),
