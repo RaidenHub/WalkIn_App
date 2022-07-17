@@ -216,7 +216,7 @@ getFoodByShopIdQuery(String shopId) {
   return QueryOptions(
     document: gql(getFoodByShopIDQueryString),
     variables: <String, dynamic>{
-      "shopId": shopId,
+      "shopId": "62d02541b81b370eee79c7db",
       // 'nRepositories': nRepositories,
     },
   );
